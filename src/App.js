@@ -12,17 +12,6 @@ function App() {
   const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(() => {
-    fetch(`${url}`, {headers: {Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`}})
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setToDoList(result.records);
-        setIsLoading(false);
-      })
-      .catch(()=>{console.log('Error')})
-  }, [])
-
-  useEffect(() => {
     if(!isLoading) {
     localStorage.setItem('savedToDoList', JSON.stringify(toDoList))}
   }, [toDoList]);
@@ -30,7 +19,7 @@ function App() {
   // created a function that takes in the newToDo from the Form and creates an item in the airtable
   // next - figure out re-fetching the airtable data to display the new item
   const addToDo = useCallback((newToDo) => {
-    // console.log(newToDo);
+    console.log(newToDo);
     base(`Default`).create([
       {"fields": {"Title": newToDo.title.toString()}}
     ], function(err, record) {
@@ -39,23 +28,51 @@ function App() {
         return;
       }
       console.log(record.getId());
-    })
+    });
+
+    // setToDoList(...newToDo);
   }, []);
 
-  // re-fetch the data each time a new to do item is added to the table...fix this
-  // useEffect(() => {
-  //   addToDo()
-  // }, [addToDo]);
-
-  const removeToDo = (id) => {
+  const removeToDo = useCallback((id) => {
     // create a new to do list including only those to do items whose keys do NOT equal the id passed in as a parameter
-    const updatedToDoList = toDoList.filter(
-      // the logic here (when passing in id) is causing EVERY item to be removed on click of the remove button, how do I fix this?
-      (todo) => todo.id !== id
-      );
+    const updatedToDoList =
+    
+    // toDoList.filter(
+    //   // the logic here (when passing in id) is causing EVERY item to be removed on click of the remove button, how do I fix this?
+    //   (todo) => todo.id !== id
+    //   );
 
-    setToDoList(updatedToDoList);
-  }
+
+
+    // airtable API instructions for deleting records
+    base('Default').destroy(id, function(err, deletedRecord) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log('Deleted record', deletedRecord.id);
+    });
+
+    // setToDoList(updatedToDoList);
+
+  }, []);
+  
+  useEffect(() => {
+    console.log('starting fetch')
+    fetch(`${url}`, {headers: {Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`}})
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        console.log(`fetched: ${result.records}`);
+        setToDoList(result.records);
+        setIsLoading(false);
+      })
+      .catch(()=>{console.log('Error')})
+  }, [])
+    // re-fetch the data each time a new to do item is added to the table...fix this
+    // useEffect(() => {
+    //   addToDo()
+    // }, []);
 
   return (
     <>
