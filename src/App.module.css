@@ -1,0 +1,36 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+* {
+    background-color: #f9eae1;
+}
+
+.Body {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.HeaderOne {
+    font-family: 'Paytone One';
+    color: #32908F;
+    font-size: 3rem;
+    margin: 30px auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .HeaderOne {
+        font-size: 2rem;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 368px) {
+    .HeaderOne {
+        font-size: 2rem;
+        margin: 0 auto;
+    }
+}
+

@@ -1,0 +1,22 @@
+.UnorderedList {
+    width: fit-content;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .UnorderedList {
+        width: 40vw;
+        margin: 10px auto;
+    }
+}
+
+@media only screen and (max-width: 368px) {
+    .UnorderedList {
+        width: 60vw;
+        margin: 10px auto;
+    }
+}

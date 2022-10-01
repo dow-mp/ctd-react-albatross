@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { InputWithLabel } from './InputWithLabel';
+import styles from './ToDoForm.module.css';
 
 export const AddToDoForm = ({onAddToDo}) => {
     // establish toDoTitle as a stateful variable and set the initial state
@@ -25,11 +26,11 @@ export const AddToDoForm = ({onAddToDo}) => {
         setToDoTitle("");
     }
     return (
-        <form onSubmit={handleAddToDo}>
+        <form className={styles.AddToDoForm} onSubmit={handleAddToDo}>
             <InputWithLabel toDo={toDoTitle} onTitleChange={handleTitleChange}>
                 Title: 
             </InputWithLabel>
-            <button type="submit">Add</button>
+            <button type="submit" className={styles.AddItemButton}>Add</button>
         </form>
     )
 }
