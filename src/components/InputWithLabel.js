@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './ToDoForm.module.css';
+import PropTypes from 'prop-types';
 
 export const InputWithLabel = ({toDo, children, onTitleChange}) => {
     const inputRef = useRef();
@@ -20,4 +21,10 @@ export const InputWithLabel = ({toDo, children, onTitleChange}) => {
             />
         </>
     )
+}
+
+InputWithLabel.propTypes = {
+    toDo: PropTypes.string, 
+    children: PropTypes.string,
+    onTitleChange: PropTypes.func,
 }
