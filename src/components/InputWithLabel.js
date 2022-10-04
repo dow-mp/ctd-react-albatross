@@ -11,7 +11,7 @@ export const InputWithLabel = ({toDo, children, onTitleChange}) => {
 
     return (
         <>
-            <label htmlFor="toDoTitle" className={styles.Label}>{children}</label>
+            <label htmlFor={toDo} className={styles.Label}>{children}</label>
             <input 
                 id={toDo} 
                 value={toDo}

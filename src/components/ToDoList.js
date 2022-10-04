@@ -7,6 +7,7 @@ export const ToDoList = ({list, onRemoveToDo}) => {
     return (
     <ul className={styles.UnorderedList}>
         {list.map((item) => {
+            // console.log(item.fields.Title);
             return (
                 <ToDoListItem
                     key={item.id}

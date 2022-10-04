@@ -3,6 +3,7 @@ import styles from './ToDoListItem.module.css';
 import PropTypes from 'prop-types';
 
 export const ToDoListItem = ({onRemoveToDo, todo}) => {
+    // console.log(todo.fields.Title);
     return (
         <div>
             <li className={styles.ListItem}>

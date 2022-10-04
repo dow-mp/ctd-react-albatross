@@ -5,7 +5,7 @@ import Airtable from 'airtable';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
 
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}?view=Grid+view`
 const base = new Airtable({apiKey: `${process.env.REACT_APP_AIRTABLE_API_KEY}`}).base(`${process.env.REACT_APP_AIRTABLE_BASE_ID}`);
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     fetch(`${url}`, {headers: {Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`}})
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        console.log(result.records);
         setToDoList(result.records);
         setIsLoading(false);
       })
@@ -32,9 +32,10 @@ function App() {
   // created a function that takes in the newToDo from the Form and creates an item in the airtable
   // next - figure out re-fetching the airtable data to display the new item
   const addToDo = useCallback((newToDo) => {
-    // console.log(newToDo);
+    console.log(newToDo);
+    setToDoList([...toDoList, newToDo])
     base(`Default`).create([
-      {"fields": {"Title": newToDo.title.toString()}}
+      {"fields": {"Title": newToDo.title}}
     ], function(err, record) {
       if (err) {
         console.error(err);
