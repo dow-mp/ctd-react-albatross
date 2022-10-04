@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { InputWithLabel } from './InputWithLabel';
 import styles from './ToDoForm.module.css';
+import PropTypes from 'prop-types';
 
 export const AddToDoForm = ({onAddToDo}) => {
     // establish toDoTitle as a stateful variable and set the initial state
@@ -33,4 +34,8 @@ export const AddToDoForm = ({onAddToDo}) => {
             <button type="submit" className={styles.AddItemButton}>Add</button>
         </form>
     )
+}
+
+AddToDoForm.propTypes = {
+    onAddToDo: PropTypes.func,
 }
