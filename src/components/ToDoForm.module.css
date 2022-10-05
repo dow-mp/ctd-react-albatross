@@ -20,6 +20,8 @@
     height: 30px;
     margin: 10px;
     border-radius: 3px;
+    font-family: 'News Cycle';
+    font-size: 1.25rem;
 }
 
 .AddItemButton {

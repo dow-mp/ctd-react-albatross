@@ -16,13 +16,15 @@ function App() {
   const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(() => {
-    fetch(`${url}`, {headers: {Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`}})
+    fetch(`${url}`, {
+      method: 'GET', 
+      headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        }
+      })
       .then((response) => response.json())
       .then((result) => {
-        console.log('result: ' + JSON.stringify(result));
-        console.log('result title: ' + result.records[0].fields.Title);
         setToDoList(result.records);
-        console.log(toDoList);
         setIsLoading(false);
       })
       .catch(()=>{console.log('Error')})
