@@ -2,21 +2,23 @@ import { useState, useEffect, useRef } from 'react';
 import styles from './ToDoForm.module.css';
 import PropTypes from 'prop-types';
 
-export const InputWithLabel = ({toDo, children, onTitleChange}) => {
+export const InputWithLabel = ({ toDoTitle, children, onChange }) => {
+
     const inputRef = useRef();
 
     useEffect(() => {
         inputRef.current.focus();
-    }, []);
+        // removing dependency array all together allows side effect to run on mount and on update
+    });
 
     return (
         <>
-            <label htmlFor={toDo} className={styles.Label}>{children}</label>
+            <label htmlFor={toDoTitle} className={styles.Label}>{children}</label>
             <input 
-                id={toDo} 
-                value={toDo}
+                id={toDoTitle} 
+                value={toDoTitle}
                 ref={inputRef}
-                onChange={onTitleChange}
+                onChange={onChange}
                 className={styles.InputField}
             />
         </>
