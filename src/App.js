@@ -2,7 +2,7 @@ import { ToDoList } from './components/ToDoList';
 import { AddToDoForm } from './components/AddToDoForm';
 import { useState, useEffect, useCallback } from 'react';
 import Airtable from 'airtable';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import styles from './App.module.css';
 
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}?view=Grid+view`
@@ -84,11 +84,22 @@ function App() {
     setToDoList(updatedToDoList);
   };
 
+  const navigate = useNavigate(); 
+
+  const navigateToMakeList = () => {
+    navigate('/todolist');
+  };
+
   return (
-    <BrowserRouter>
       <Routes>
+        <Route
+          path="/"
+          element={<button type="button" className={styles.SpecialButton} onClick={navigateToMakeList}>Make Your To Do List</button>}
+          exact
+          >
+        </Route>
         <Route 
-          path={"/"} 
+          path={"/todolist"} 
           element={
             <div className={styles.Body}>
               <h1 className={styles.HeaderOne}>To Do List</h1>
@@ -104,14 +115,7 @@ function App() {
             </div>}
           exact>
         </Route>
-        <Route
-          path="/new"
-          element={<h1>New To Do List</h1>}
-          exact
-          >
-          </Route>
       </Routes>
-    </BrowserRouter>
   );
 }
 
