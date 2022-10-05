@@ -26,7 +26,7 @@ export const InputWithLabel = ({ toDoTitle, children, onChange }) => {
 }
 
 InputWithLabel.propTypes = {
-    toDo: PropTypes.string, 
+    toDoTitle: PropTypes.string, 
     children: PropTypes.string,
-    onTitleChange: PropTypes.func,
+    onChange: PropTypes.func,
 }

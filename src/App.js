@@ -12,9 +12,11 @@ const base = new Airtable({apiKey: `${process.env.REACT_APP_AIRTABLE_API_KEY}`})
 
 function App() {
 
+  // initial state for toDoList retrieved from local storage (or empty if no local storage exists) until results are received from the API
   const [ toDoList, setToDoList ] = useState(JSON.parse(localStorage.getItem("savedToDoList")) || []);
   const [ isLoading, setIsLoading ] = useState(true);
 
+  // fetch data from Airtable using fetch API with useEffect for loading data on initial render and every update
   useEffect(() => {
     fetch(`${url}`, {
       method: 'GET', 
@@ -28,39 +30,38 @@ function App() {
         setIsLoading(false);
       })
       .catch(()=>{console.log('Error')})
-  }, [])
+  })
 
+  // store toDoList to local storage on initial render and anytime toDoList changes
   useEffect(() => {
     if(!isLoading) {
     localStorage.setItem('savedToDoList', JSON.stringify(toDoList))}
   }, [toDoList]);
+  
+  // POST new to do list items to Airtable using the Fetch API
+  async function addToDo(newToDo) {
+    const toDoPostBody = {
+      fields: {
+        title: newToDo.title
+      }};
 
-  // created a function that takes in the newToDo from the Form and creates an item in the airtable
-  // next - figure out re-fetching the airtable data to display the new item
-  const addToDo = useCallback((newToDo) => {
-    console.log({newToDo})
-    // console.log('before: ' + JSON.stringify(toDoList));
-    // console.log('after: ' + JSON.stringify(toDoList));
-    base(`Default`).create([{
-        "fields": {"title": newToDo.title}}
-    ], function(err, record) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(record.getId());
-    })
+    let response = await fetch(`${url}`, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/JSON',
+          'Authorization': `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        },
+      body: JSON.stringify(toDoPostBody),
+    });
+    
+    console.log(await response.json());
 
-    setToDoList([...toDoList, newToDo]);
-  }, [toDoList]);
+    setToDoList([...toDoList]);
+    console.log(toDoList);
+  };
 
-  // re-fetch the data each time a new to do item is added to the table...fix this
-  // useEffect(() => {
-  //   addToDo()
-  // }, [toDoList]);
-
+  // delete to do list item using Airtable API
   const removeToDo = (id) => {
-    // create a new to do list including only those to do items whose keys do NOT equal the id passed in as a parameter
     const updatedToDoList = toDoList.filter(
       (todo) => todo.id !== id
       );

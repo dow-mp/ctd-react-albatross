@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 export const AddToDoForm = ({onAddToDo}) => {
     const [ toDoTitle, setToDoTitle ] = useState("");
     
+    // handle data entered into input element, use to set toDoTitle
     const handleTitleChange = (e) => {
         let newToDoTitle = e.target.value;
         setToDoTitle(newToDoTitle);
         e.target.value='';
     }
 
+    // callback function passing toDoTitle back up to App addToDo functioon
     const handleAddToDo = (e) => {
         e.preventDefault();
         onAddToDo({title: toDoTitle})
