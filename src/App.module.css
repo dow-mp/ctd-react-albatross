@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
 * {
-    background-color: #f9eae1;
+    background-color: rgb(249, 234, 225);
 }
 
 .Body {
@@ -15,7 +15,7 @@
 
 .HeaderOne {
     font-family: 'Paytone One';
-    color: #32908F;
+    color: rgb(50, 144, 143);
     font-size: 3rem;
     margin: 30px auto;
 }
@@ -29,12 +29,12 @@
     font-family: 'News Cycle';
     font-size: 3rem;
     text-align: center;
-    border: 1px solid #32908F;
+    border: 1px solid rgb(50, 144, 143);
     border-radius: 15px;
-    background-color: rgb(50, 144, 143, 0.75);
-    /* background-image: linear-gradient(90deg, #FFFFFF 15%, #32908F); */
+    /* background-color: rgb(50, 144, 143, 0.75); */
+    background-image: linear-gradient(190deg, rgb(98, 229, 229) 1%, rgb(50, 144, 143));
     /* background-image: radial-gradient(ellipse at left bottom, #F0D1BF 30%, #BD8265 99%); */
-    box-shadow: 3px 7px 15px 3px darkgray ;
+    box-shadow: 3px 7px 15px 3px rgb(169, 169, 169) ;
 }
 
 @media only screen and (max-width: 768px) {
