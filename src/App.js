@@ -11,8 +11,7 @@ const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_
 
 function App() {
 
-  // initial state for toDoList retrieved from local storage (or empty if no local storage exists) until results are received from the API
-  const [ toDoList, setToDoList ] = useState(JSON.parse(localStorage.getItem("savedToDoList")) || []);
+  const [ toDoList, setToDoList ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
 
   // fetch data from Airtable using fetch API with useEffect for loading data on initial render and every update
@@ -31,18 +30,12 @@ function App() {
         setIsLoading(false);
       })
       .catch(()=>{console.log('Error')})
-  }, [])
+  }, []);
 
   useEffect(() => {
     console.log(`fetching via side effect`)
     getData()
-  }, [getData])
-
-  // store toDoList to local storage on initial render and anytime toDoList changes
-  useEffect(() => {
-    if(!isLoading) {
-    localStorage.setItem('savedToDoList', JSON.stringify(toDoList))}
-  }, [toDoList]);
+  }, [getData]);
 
   // POST new to do list items to Airtable using the Fetch API
   const addToDo = (newToDo) => {
