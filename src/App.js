@@ -1,12 +1,12 @@
 import { ToDoList } from './components/ToDoList';
 import { AddToDoForm } from './components/AddToDoForm';
 import { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, /*useNavigate*/ } from 'react-router-dom';
 import styles from './App.module.css';
 
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}?view=Grid+view`
 
-const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}/`;
+const changeUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}${process.env.REACT_APP_AIRTABLE_BASE_NAME}/`;
 
 
 function App() {
@@ -70,7 +70,7 @@ function App() {
     );
 
     const deleteThisItemId = filterOutForDelete[0].id;
-      fetch(`${deleteUrl}${deleteThisItemId}`, {
+      fetch(`${changeUrl}${deleteThisItemId}`, {
         method: 'DELETE', 
         headers: {
             'Content-Type': 'application/JSON',
@@ -84,22 +84,66 @@ function App() {
     setToDoList(updatedToDoList);
   };
 
-  // allows navigation from / landing page via button using onClick
-  const navigate = useNavigate(); 
-  const navigateToMakeList = () => {
-    navigate('/todolist');
+  // const renderUpdateContainer = () => {
+
+  // }
+  const updateToDo = (updatedToDo) => {
+    console.log(updatedToDo);
+    // const updatedToDoList = () => {
+    //   console.log('update to do item');
+    // i dont want to filter anything out, but I do need to account for one particular title that has been changed
+    // identify which title is changing
+    // capture its new value
+    // locate that item in the toDoList array and splice it/replace it with the new value
+    // };
+
+    // const filteredForUpdate = toDoList.filter(
+    //   (todo) => todo.id === updatedToDo.id
+    // );
+
+    // const updateThisItemId = filteredForUpdate[0].id;
+    fetch(`${changeUrl}${updatedToDo.id}`, {
+      method: 'PATCH', 
+      headers: {
+          'Content-Type': 'application/JSON',
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        },
+      body: JSON.stringify({
+        fields: {
+          title: updatedToDo.title
+        }}),
+          })
+      .then(setTimeout(() => {
+          getData()
+        }, 100))
+      .catch(()=>{console.log('Error')})
   };
+
+  // {
+  //   "id": "recwA7ZB0LxXZyTlK",
+  //   "fields": {
+  //     "title": "item 1"
+  //   }
+  // },
+
+  // allows navigation from / landing page via button using onClick
+  // const navigate = useNavigate(); 
+  // const navigateToMakeList = () => {
+  //   navigate('/todolist');
+  // };
 
   return (
       <Routes>
+        {/* commenting out to remove landing page requirement from project, landing page is unnecessary for the functionality of the app
         <Route
           path="/"
-          element={<button type="button" className={styles.SpecialButton} onClick={navigateToMakeList}>Make Your To Do List</button>}
+          element={<button type="button" className={styles.SpecialButton} onClick={navigateToMakeList}><span className={styles.SpecialButtonSpan}>Make Your To Do List</span></button>}
           exact
           >
-        </Route>
+        </Route> */}
         <Route 
-          path={"/todolist"} 
+          // path={"/todolist"} 
+          path="/"
           element={
             <div className={styles.Body}>
               <h1 className={styles.HeaderOne}>To Do List</h1>
@@ -110,7 +154,9 @@ function App() {
               ? <p>Loading...</p> 
               : <ToDoList 
                   list={toDoList} 
-                  onRemoveToDo={removeToDo}/>}
+                  onRemoveToDo={removeToDo}
+                  onUpdateToDo={updateToDo}
+                  />}
 
             </div>}
           exact>

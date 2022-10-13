@@ -2,7 +2,7 @@ import { ToDoListItem } from './ToDoListItem';
 import styles from './ToDoList.module.css';
 import PropTypes from 'prop-types';
 
-export const ToDoList = ({list, onRemoveToDo}) => {
+export const ToDoList = ({list, onRemoveToDo, onUpdateToDo, renderUpdateContainer}) => {
     return (
     <ul className={styles.UnorderedList}>
         {list.map((item) => {
@@ -11,6 +11,8 @@ export const ToDoList = ({list, onRemoveToDo}) => {
                     key={item.id}
                     todo={item}
                     onRemoveToDo={onRemoveToDo}
+                    onUpdateToDo={onUpdateToDo}
+                    renderUpdateContainer={renderUpdateContainer}
                 />
             )
         })}

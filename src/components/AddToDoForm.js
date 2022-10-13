@@ -8,7 +8,9 @@ export const AddToDoForm = ({onAddToDo}) => {
     
     // handle data entered into input element, use to set toDoTitle
     const handleTitleChange = (e) => {
+        console.log(`from AddToDoForm: ${e}`);
         let newToDoTitle = e.target.value;
+        console.log({newToDoTitle});
         setToDoTitle(newToDoTitle);
         e.target.value='';
     }

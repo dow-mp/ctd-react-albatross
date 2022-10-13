@@ -23,12 +23,14 @@
 .SpecialButton {
     display: flex;
     align-self:center;
-    margin: 200px auto;
-    height: 200px;
-    width: 400px;
+    padding: 0px;
+    margin: 30% auto;
+    height: 20vh;
+    width: 40vw;
     font-family: 'News Cycle';
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
+    vertical-align: middle;
     border: 1px solid rgb(50, 144, 143);
     border-radius: 15px;
     /* background-color: rgb(50, 144, 143, 0.75); */
@@ -37,10 +39,22 @@
     box-shadow: 3px 7px 15px 3px rgb(169, 169, 169) ;
 }
 
+.SpecialButtonSpan {
+    padding: 0;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent;
+}
+
 @media only screen and (max-width: 768px) {
     .HeaderOne {
         font-size: 2rem;
         margin: 0 auto;
+    }
+
+    .SpecialButtonSpan {
+        font-size: 1.25rem;
     }
 }
 
@@ -48,6 +62,10 @@
     .HeaderOne {
         font-size: 2rem;
         margin: 0 auto;
+    }
+
+    .SpecialButtonSpan {
+        font-size: 1rem;
     }
 }
 
