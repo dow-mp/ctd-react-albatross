@@ -18,14 +18,14 @@ const falseClickState = () => {
             <li className={styles.ListItem}>
                 <div className={styles.ListItemContainer}>
                     <span className={styles.ListItemTitle}>{todo.fields.title}</span>
-                    <div className={styles.TwoButtonDiv}>
+                    {!clickState && <div className={styles.TwoButtonDiv}>
                         <button type="button" onClick={() => {setClickState(true)}} className={styles.UpdateItemButton}>
                             <AiOutlineEdit className={styles.Icons}/>
                         </button>
                         <button type="button" onClick={() => onRemoveToDo(todo.id)} className={styles.RemoveItemButton}>
                             <IoTrash className={styles.Icons}/>
                         </button>
-                    </div>
+                    </div>}
                 </div>
                 {clickState && <UpdateContainer todo={todo} updateToDo={onUpdateToDo} onCancel={falseClickState}/>}
             </li>
