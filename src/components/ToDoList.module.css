@@ -1,9 +1,9 @@
 .UnorderedList {
-    width: fit-content;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-between;
+    width: fit-content;
     padding: 0;
 }
 

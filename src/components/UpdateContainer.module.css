@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@700&family=Paytone+One&display=swap');
+
+.UpdateForm {
+    display: flex;
+    flex-direction: row nowrap;
+    justify-content: space-between;
+}
+
+.RemoveItemButton {
+    background-color: rgb(215, 133, 33, 0.4);
+    align-self:stretch;
+    width: 80px;
+    height: 30px;
+    font-family: 'News Cycle';
+    font-weight: 700;
+    font-size: 1rem;
+    /* border: 1px solid rgb(215, 133, 33, 0.6); */
+    border: none;
+    border-radius: 3px;
+    /* box-shadow: 2px 2px 4px 5px hotpink; */
+    box-shadow: 3px 2px 10px 2px rgba(215, 128, 21, 0.2);
+    text-align: center;
+    vertical-align: center;
+    margin: 10px;
+}
+
+.Label {
+    font-family: 'Paytone One';
+    font-size: 1.5rem;
+}
+
+.InputField {
+    height: 30px;
+    margin: 10px;
+    border-radius: 3px;
+    font-family: 'News Cycle';
+    font-size: 1.25rem;
+    margin-left: 5px;
+}
+
+.SaveButtonText {
+    color: rgb(50, 144, 143);
+}
+
+.CancelButtonText {
+    color: red;
+}

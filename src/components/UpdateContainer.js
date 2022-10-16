@@ -1,4 +1,5 @@
 import { useState }from 'react';
+import styles from './UpdateContainer.module.css';
 
 export const UpdateContainer =({todo, updateToDo, onCancel}) => {
 
@@ -23,10 +24,12 @@ const handleSubmit = (e) => {
 
   return (
     <>
-        <form onSubmit={handleSubmit}>
-            <input placeholder={todo.fields.title} onChange={handleChange}/>
-            <button type="button" onClick={onCancel}>Cancel</button>
-            <button type="submit">Save</button>
+        <form onSubmit={handleSubmit} className={styles.UpdateForm}>
+            <input placeholder={todo.fields.title} onChange={handleChange} className={styles.InputField}/>
+            <div className={styles.TwoButtonDiv}>
+              <button type="submit" className={`${styles.RemoveItemButton} ${styles.SaveButtonText}`}>Save</button>
+              <button type="button" onClick={onCancel} className={`${styles.RemoveItemButton} ${styles.CancelButtonText}`}>Cancel</button>
+            </div>
         </form>
     </>
   )
