@@ -39,7 +39,7 @@
 
 .UpdateItemButton {
     background-color: rgb(215, 133, 33, 0.4);
-    width: 80px;
+    width: 50px;
     height: 30px;
     border: none;
     border-radius: 3px;
@@ -51,7 +51,7 @@
 
 .RemoveItemButton {
     background-color: rgb(215, 133, 33, 0.4);
-    width: 80px;
+    width: 50px;
     height: 30px;
     border: none;
     border-radius: 3px;
@@ -71,7 +71,6 @@
     display: flex;
     flex-flow: row nowrap;
 }
-
 
 
 
