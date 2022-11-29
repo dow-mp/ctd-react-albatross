@@ -45,3 +45,18 @@
 .CancelButtonText {
     color: red;
 }
+
+
+/* MOBILE styles     MOBILE styles      MOBILE styles     MOBILE styles */
+@media only screen and (max-width: 368px) {
+    .UpdateForm {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .TwoButtonDiv {
+        display: inline-block;
+    }
+}

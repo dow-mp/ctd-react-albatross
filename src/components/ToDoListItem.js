@@ -13,11 +13,13 @@ const falseClickState = () => {
     setClickState(false);
 }
 
+const shortenedToDo = todo.fields.title.slice(0, -(todo.fields.title.length-8)) + '...';
+
     return (
         <div>
             <li className={styles.ListItem}>
                 <div className={styles.ListItemContainer}>
-                    <span className={styles.ListItemTitle}>{todo.fields.title}</span>
+                    <span className={styles.ListItemTitle}>{todo.fields.title.length < 10 ? todo.fields.title : shortenedToDo}</span>
                     {!clickState && <div className={styles.TwoButtonDiv}>
                         <button type="button" onClick={() => {setClickState(true)}} className={styles.UpdateItemButton}>
                             <AiOutlineEdit className={styles.Icons}/>
