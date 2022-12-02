@@ -14,6 +14,9 @@ const falseClickState = () => {
 }
 
 const shortenedToDo = todo.fields.title.slice(0, -(todo.fields.title.length-8)) + '...';
+// next - figure out how to allow users to expand these dots to view the entire to do list title
+// is there a way to only utilize this feature on mobile?
+
 
     return (
         <div>
